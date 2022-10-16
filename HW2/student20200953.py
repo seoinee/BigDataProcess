@@ -20,27 +20,39 @@ for row in ws:
 scoreList.sort(reverse=True)
 cnt = ws.max_row - 1
 
-aCnt = scoreList[math.floor(cnt * 0.3)]
-apCnt = scoreList[math.floor(cnt * 0.15)]
-bCnt = scoreList[math.floor(cnt * 0.7)]
-bpCnt = scoreList[math.floor(cnt * 0.5)]
-cpCnt = scoreList[math.floor(cnt * 0.85)]
+aCnt = math.floor(cnt * 0.3)
+apCnt = math.floor(cnt * 0.15)
+bCnt = math.floor(cnt * 0.7)
+bpCnt = math.floor(cnt * 0.5)
+cpCnt = math.floor(cnt * 0.85)
 
-row_id = 1;
+for i in range(0, apCnt):
+	for j in range(1, ws.max_row + 1):
+		if scoreList[i] == ws.cell(row = j, column = 7).value:
+			ws.cell(row = j, column = 8).value = "A+"
+for i in range(apCnt, aCnt):
+	for j in range(1, ws.max_row + 1):
+		if scoreList[i] == ws.cell(row = j, column = 7).value:
+			ws.cell(row = j, column = 8).value = "A" 
 
-for row in ws:
-	if row_id != 1:
-		if ws.cell(row = row_id, column = 7).value > apCnt:
-			ws.cell(row = row_id, column = 8).value = "A+"
-		elif ws.cell(row = row_id, column = 7).value > aCnt:
-			ws.cell(row = row_id, column = 8).value = "A"
-		elif ws.cell(row = row_id, column = 7).value > bpCnt:
-			ws.cell(row = row_id, column = 8).value = "B+"
-		elif ws.cell(row = row_id, column = 7).value > bCnt:
-			ws.cell(row = row_id, column = 8).value = "B"
-		elif ws.cell(row = row_id, column = 7).value > cpCnt:
-			ws.cell(row = row_id, column = 8).value = "C+"
-		else:
-			ws.cell(row = row_id, column = 8).value = "C"
-	row_id += 1
+for i in range(aCnt, bpCnt):
+	for j in range(1, ws.max_row + 1):
+		if scoreList[i] == ws.cell(row = j, column = 7).value:
+			ws.cell(row = j, column = 8).value = "B+"
+
+for i in range(bpCnt, bCnt):
+	for j in range(1, ws.max_row + 1):
+		if scoreList[i] == ws.cell(row = j, column = 7).value:
+			ws.cell(row = j, column = 8).value = "B"
+
+for i in range(bCnt, cpCnt):
+	for j in range(1, ws.max_row + 1):
+		if scoreList[i] == ws.cell(row = j, column = 7).value:
+			ws.cell(row = j, column = 8).value = "C+"
+
+for i in range(cpCnt, cnt):
+	for j in range(1, ws.max_row + 1):
+		if scoreList[i] == ws.cell(row = j, column = 7).value:
+			ws.cell(row = j, column = 8).value = "C"
 wb.save( "student.xlsx" )
+
