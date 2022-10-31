@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 
-f = open("movie.dat", "rt")
-output = open("movieoutput.txt", "wt")
+import sys
+
+a = sys.argv[1]
+b = sys.argv[2]
+
+f = open(a, "rt")
+output = open(b, "wt")
 
 cnt = 0
 
