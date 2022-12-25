@@ -47,7 +47,7 @@ length = len(testFileList)
 
 group, labels = createDataSet(trainingFile)
 
-for k in range(1, 20):
+for k in range(1, 21):
     count = 0
     errorCount = 0
     
